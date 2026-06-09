@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".FridayHelperApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/octopus_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/octopus_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Friday_Helper">
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Friday_Helper">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".WelcomeOctopusActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Friday_Helper" />
+        <activity
+            android:name=".EntryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Friday_Helper" />
+        <activity
+            android:name=".security.LockActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".search.GlobalSearchActivity"
+            android:exported="false"
+            android:label="@string/title_global_search" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings" />
+        <activity
+            android:name=".notes.NotesActivity"
+            android:exported="false"
+            android:label="@string/title_notes" />
+        <activity
+            android:name=".notes.NoteEditorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.SettingsGuideActivity"
+            android:exported="false"
+            android:label="@string/user_guide_title" />
+        <activity
+            android:name=".settings.SettingsPersonalizationActivity"
+            android:exported="false"
+            android:label="@string/title_personalization" />
+        <activity
+            android:name=".settings.SettingsAppearanceActivity"
+            android:exported="false"
+            android:label="@string/title_appearance" />
+        <activity
+            android:name=".settings.SettingsPermissionsActivity"
+            android:exported="false"
+            android:label="@string/title_permissions" />
+        <activity
+            android:name=".settings.SettingsSecurityActivity"
+            android:exported="false"
+            android:label="@string/title_security" />
+        <activity
+            android:name=".settings.SettingsExtraActivity"
+            android:exported="false"
+            android:label="@string/title_extra" />
+        <activity
+            android:name=".rates.FiatRatesActivity"
+            android:exported="false"
+            android:label="@string/menu_rates" />
+        <activity
+            android:name=".rates.CryptoRatesActivity"
+            android:exported="false"
+            android:label="@string/menu_crypto_rates" />
+        <activity
+            android:name=".rates.FiatToCryptoActivity"
+            android:exported="false"
+            android:label="@string/menu_fiat_to_crypto" />
+        <activity
+            android:name=".chat.ChatsActivity"
+            android:exported="false"
+            android:label="@string/menu_chats" />
+        <activity
+            android:name=".contacts.ContactsActivity"
+            android:exported="false"
+            android:label="@string/title_contacts" />
+        <activity
+            android:name=".tasks.TasksActivity"
+            android:exported="false"
+            android:label="@string/title_tasks"
+            android:theme="@style/Theme.Tasks.Light" />
+        <receiver
+            android:name=".tasks.TaskNotificationReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".alarm.AlarmReceiver"
+            android:exported="false" />
+        <service
+            android:name=".settings.VoiceWakeService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+    </application>
+
+</manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tasks_calendar_cell_size">44dp</dimen>
+    <dimen name="tasks_calendar_cell_margin">6dp</dimen>
+    <dimen name="tasks_tag_padding_h">10dp</dimen>
+    <dimen name="tasks_tag_padding_v">4dp</dimen>
+</resources>

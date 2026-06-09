@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/warm_gray">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            app:title=""
+            app:titleTextColor="@color/default_accent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- Burger button -->
+            <ImageButton
+                android:id="@+id/btnBurger"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/bg_button_warm_gray"
+                android:padding="8dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_menu_24"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Кнопка «+» справа от бургера: новый чат (иконка поверх фона) -->
+            <FrameLayout
+                android:id="@+id/btnNewChat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:elevation="4dp"
+                android:contentDescription="@string/action_new_chat_plus"
+                app:layout_constraintTop_toTopOf="@id/btnBurger"
+                app:layout_constraintBottom_toBottomOf="@id/btnBurger"
+                app:layout_constraintStart_toEndOf="@id/btnBurger">
+
+                <View
+                    android:id="@+id/btnNewChatBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_button_warm_gray" />
+
+                <ImageView
+                    android:id="@+id/btnNewChatIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/new_chat"
+                    android:contentDescription="@string/action_new_chat_plus" />
+            </FrameLayout>
+
+            <!-- Overlay stack for semi-transparent drawer -->
+            <FrameLayout
+                android:id="@+id/menuOverlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:alpha="0"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/menuPanel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="@android:color/transparent">
+
+                    <LinearLayout
+                        android:id="@+id/menuHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp">
+
+                        <ImageView
+                            android:id="@+id/menuIcon"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/bg_avatar_circle"
+                            android:scaleType="centerInside"
+                            android:padding="6dp" />
+
+                        <TextView
+                            android:id="@+id/menuTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="HOCTOPUS"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnNewChatInMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/action_new_chat_plus" />
+
+                    <!-- Горизонтальная черта между «Новый чат +» и остальными пунктами меню -->
+                    <View
+                        android:id="@+id/menuDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/divider_menu" />
+
+                    <Button
+                        android:id="@+id/btnGlobalSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_global_search" />
+
+                    <Button
+                        android:id="@+id/btnTasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_tasks" />
+
+                    <Button
+                        android:id="@+id/btnAlarm"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_alarm" />
+
+                    <Button
+                        android:id="@+id/btnCalls"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_calls" />
+
+                    <Button
+                        android:id="@+id/btnNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_notes" />
+
+                    <Button
+                        android:id="@+id/btnRates"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_rates" />
+
+                    <Button
+                        android:id="@+id/btnChats"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_chats" />
+
+                    <Button
+                        android:id="@+id/btnSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_menu_item_plain"
+                        android:text="@string/menu_settings" />
+
+                    <!-- push weather to bottom -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:id="@+id/weatherContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/weatherIcon"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginEnd="6dp"
+                            android:src="@android:drawable/ic_menu_compass" />
+
+                        <TextView
+                            android:id="@+id/weatherText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Погода"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Панель чата: закруглённые углы, мягкий оттенок фона, скролл внутри; отступ сверху от кнопок -->
+            <FrameLayout
+                android:id="@+id/chatPanel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_chat_panel"
+                android:padding="14dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/btnNewChat"
+                app:layout_constraintBottom_toTopOf="@id/chatContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="true"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:scrollbars="vertical" />
+            </FrameLayout>
+
+            <com.example.friday_helper.ui.VoiceWavesView
+                android:id="@+id/voiceWaves"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/greetingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/centerButtonContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/voiceDimOverlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/black"
+                android:alpha="0"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/voiceTranscriptText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:maxLines="4"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toTopOf="@id/centerButtonContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/voiceResetCircle"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:background="@drawable/bg_voice_reset_circle"
+                android:elevation="10dp"
+                app:layout_constraintTop_toBottomOf="@id/voiceTranscriptText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/voiceResetIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@null" />
+            </FrameLayout>
+
+            <com.example.friday_helper.ui.TentaclesView
+                android:id="@+id/tentaclesView"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:visibility="gone"
+                android:elevation="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/centerButtonContainer"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:elevation="16dp"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <!-- CircleMenuView добавляется программно в MainActivity (иконки icons8) -->
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/chatContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:elevation="6dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/chatInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hintEnabled="false"
+                    android:minHeight="45dp"
+                    app:boxStrokeColor="@android:color/transparent"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:boxBackgroundColor="@color/warm_gray_dark"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/chatEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/chat_hint"
+                        android:inputType="textMultiLine"
+                        android:imeOptions="actionDone"
+                        android:singleLine="false"
+                        android:maxLines="4"
+                        android:minLines="1"
+                        android:gravity="center_vertical|start"
+                        android:includeFontPadding="false"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:overScrollMode="ifContentScrolls"
+                        android:scrollbars="vertical" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/btnMic"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_button_warm_gray"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/microphone"
+                    android:contentDescription="@string/app_name" />
+
+                <ImageButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_button_warm_gray"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/enter"
+                    android:contentDescription="@string/app_name" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Drawer panel not used in this variant -->
+
+</androidx.drawerlayout.widget.DrawerLayout>

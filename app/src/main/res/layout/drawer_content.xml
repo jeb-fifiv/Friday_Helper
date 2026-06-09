@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="48dp"
+    android:padding="16dp"
+    android:background="@android:color/transparent"
+    tools:ignore="RtlSymmetry">
+
+    <Button
+        android:id="@+id/btnTasks"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_tasks"
+        android:textColor="@color/default_accent"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnAlarm"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_alarm"
+        android:textColor="@color/default_accent"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnCalls"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_calls"
+        android:textColor="@color/default_accent"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnMessages"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_messages"
+        android:textColor="@color/default_accent"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnNotes"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_notes"
+        android:textColor="@color/default_accent"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button_warm_gray"
+        android:text="@string/menu_settings"
+        android:textColor="@color/default_accent" />
+
+</LinearLayout>
+

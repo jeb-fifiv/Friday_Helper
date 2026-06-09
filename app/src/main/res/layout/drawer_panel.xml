@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerRoot"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/itemTasks"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_tasks"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/itemAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_alarm"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/itemCalls"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_calls"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/itemMessages"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_messages"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/itemNotes"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_notes"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/itemSettings"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:text="@string/menu_settings"
+        android:textSize="16sp"
+        android:foreground="?attr/selectableItemBackground" />
+
+</LinearLayout>
+

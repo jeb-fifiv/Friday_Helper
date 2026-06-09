@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="6dp">
+
+    <LinearLayout
+        android:id="@+id/messageActionsBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical"
+        android:gravity="start"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/actionCopyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="@string/chat_action_copy"
+            android:textSize="12sp"
+            android:contentDescription="@string/chat_action_copy" />
+
+        <TextView
+            android:id="@+id/actionRestartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="@string/chat_action_restart"
+            android:textSize="12sp"
+            android:contentDescription="@string/chat_action_restart" />
+
+        <TextView
+            android:id="@+id/actionDeleteText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="@string/chat_action_delete"
+            android:textColor="#D32F2F"
+            android:textSize="12sp"
+            android:contentDescription="@string/chat_action_delete" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/messageBubbleWrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:maxWidth="280dp"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:background="@drawable/bg_message_bubble_user"
+            android:textColor="@color/default_accent"
+            android:textSize="15sp"
+            tools:text="Пример сообщения" />
+    </FrameLayout>
+
+    <!-- Индикатор галочек: только у сообщений пользователя, под пузырьком -->
+    <LinearLayout
+        android:id="@+id/messageCheckRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingTop="2dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/messageCheck1"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_check_small"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:id="@+id/messageCheck2"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="2dp"
+            android:src="@drawable/ic_check_small"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+    </LinearLayout>
+</LinearLayout>

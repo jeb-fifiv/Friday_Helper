@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootSecurity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warm_gray">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/warm_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title=""
+        app:navigationIcon="@null"
+        app:titleTextColor="@color/default_accent" />
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="12dp"
+            android:gravity="center"
+            android:text="&lt;"
+            android:textSize="28sp"
+            android:textColor="@android:color/black"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/action_cancel"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_security"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:paddingBottom="24dp">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchPin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_pin"
+                android:textColor="@color/default_accent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/pinHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_pin"
+                android:textColor="@color/default_accent"
+                android:alpha="0.8"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/switchPin"
+                app:layout_constraintStart_toStartOf="@id/switchPin"
+                app:layout_constraintEnd_toEndOf="@id/switchPin" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchBiometric"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/label_biometric"
+                android:textColor="@color/default_accent"
+                app:layout_constraintTop_toBottomOf="@id/pinHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/biometricHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_biometric"
+                android:textColor="@color/default_accent"
+                android:alpha="0.8"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/switchBiometric"
+                app:layout_constraintStart_toStartOf="@id/switchBiometric"
+                app:layout_constraintEnd_toEndOf="@id/switchBiometric" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchNotesProtection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/label_notes_protection"
+                android:textColor="@color/default_accent"
+                app:layout_constraintTop_toBottomOf="@id/biometricHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/notesProtectionHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_notes_protection"
+                android:textColor="@color/default_accent"
+                android:alpha="0.8"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/switchNotesProtection"
+                app:layout_constraintStart_toStartOf="@id/switchNotesProtection"
+                app:layout_constraintEnd_toEndOf="@id/switchNotesProtection" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchNotesEncryption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/label_notes_encryption"
+                android:textColor="@color/default_accent"
+                app:layout_constraintTop_toBottomOf="@id/notesProtectionHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/notesEncryptionHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_notes_encryption"
+                android:textColor="@color/default_accent"
+                android:alpha="0.8"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/switchNotesEncryption"
+                app:layout_constraintStart_toStartOf="@id/switchNotesEncryption"
+                app:layout_constraintEnd_toEndOf="@id/switchNotesEncryption" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchGuest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/label_guest_mode"
+                android:textColor="@color/default_accent"
+                app:layout_constraintTop_toBottomOf="@id/notesEncryptionHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/guestHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_guest_mode"
+                android:textColor="@color/default_accent"
+                android:alpha="0.8"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/switchGuest"
+                app:layout_constraintStart_toStartOf="@id/switchGuest"
+                app:layout_constraintEnd_toEndOf="@id/switchGuest" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

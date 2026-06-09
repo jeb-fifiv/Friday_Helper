@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tasksRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tasks_screen_bg">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:paddingBottom="88dp">
+
+            <!-- Кнопка Назад -->
+            <TextView
+                android:id="@+id/tasksBtnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:text="&lt;"
+                android:textSize="28sp"
+                android:textColor="@color/tasks_header_text"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/action_cancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Верхняя строка: поиск и меню справа -->
+            <ImageButton
+                android:id="@+id/tasksBtnSearch"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/tasks_search"
+                android:src="@drawable/ic_search_24"
+                app:layout_constraintEnd_toStartOf="@id/tasksBtnMenu"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/tasksBtnMenu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/title_tasks"
+                android:src="@drawable/ic_more_vert_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Выбранная дата -->
+            <TextView
+                android:id="@+id/tasksDateRange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/tasks_header_text"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:text="15 января 2025"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tasksBtnSearch" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tasksSearchWrap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:boxBackgroundMode="filled"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tasksDateRange">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tasksSearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tasks_search_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingVertical="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Блок календаря (сворачиваемый) -->
+            <LinearLayout
+                android:id="@+id/tasksCalendarBlock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tasksSearchWrap">
+
+                <!-- Строка-заголовок: клик сворачивает/разворачивает календарь -->
+                <LinearLayout
+                    android:id="@+id/tasksCalendarHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_tasks_calendar_card"
+                    android:elevation="3dp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/tasksMonthPrev"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_chevron_left_24"
+                        app:tint="@color/tasks_header_secondary" />
+
+                    <TextView
+                        android:id="@+id/tasksMonthYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/tasks_header_text"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/tasks_calendar_year" />
+
+                    <ImageView
+                        android:id="@+id/tasksMonthNext"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_chevron_right_24"
+                        app:tint="@color/tasks_header_secondary" />
+
+                    <ImageView
+                        android:id="@+id/tasksCalendarExpandIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_expand_more_black_24"
+                        app:tint="@color/tasks_header_secondary" />
+                </LinearLayout>
+
+                <!-- Календарь одного месяца в скруглённой карточке -->
+                <LinearLayout
+                    android:id="@+id/tasksCalendarContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:elevation="2dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_tasks_calendar_card"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <GridLayout
+                        android:id="@+id/tasksMonthGrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="7"
+                        android:rowCount="7"
+                        android:useDefaultMargins="false" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tasksSearchCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/tasks_header_secondary"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tasksCalendarBlock"
+                tools:text="Найдено: 3" />
+
+            <!-- Список задач -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasksRecycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tasksSearchCount"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_task" />
+
+            <TextView
+                android:id="@+id/tasksEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tasks_empty"
+                android:textColor="@color/tasks_header_secondary"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/tasksRecycler"
+                app:layout_constraintEnd_toEndOf="@id/tasksRecycler"
+                app:layout_constraintStart_toStartOf="@id/tasksRecycler"
+                app:layout_constraintTop_toTopOf="@id/tasksRecycler"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Плавающая кнопка + -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/tasksFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/tasks_add_task"
+        app:backgroundTint="@color/tasks_fab_accent"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:maxImageSize="24dp"
+        app:srcCompat="@drawable/ic_fab_plus"
+        app:tint="@color/tasks_fab_icon" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

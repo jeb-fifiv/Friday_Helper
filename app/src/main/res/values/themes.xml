@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Friday_Helper" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Friday_Helper" parent="Base.Theme.Friday_Helper" />
+
+    <!-- Экран задач: светлая тема, минималистичный стиль -->
+    <style name="Theme.Tasks.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@color/tasks_screen_bg</item>
+        <item name="android:statusBarColor">@color/tasks_screen_bg</item>
+    </style>
+</resources>
